@@ -1,0 +1,71 @@
+<!doctype html>
+<head>
+  <title>A simple Flask/d3 visualization</title>
+  <script src="https://d3js.org/d3.v4.min.js"></script>
+  <style>
+  h2{
+    color:#622  ;
+  }
+  .cde{
+    background-color: #ffe;
+    border:1px solid #444;
+    padding:5px;
+    color:#226;
+  }
+  .in-link{
+    color:#118;
+    padding:1px;
+  }
+  .li-head{
+    list-style: none;
+    font-weight: bold;
+    color: #522;
+    margin-left:-18px;
+  }
+  ul{
+    margin-left:25px;
+  }
+  </style>
+</head>
+<h1>A simple Flask/d3/MySQL visualization</h1>
+<div id="description" style="width:40%;float:left">
+  <h2>How to do that?</h2>
+  <ul>
+    <li class="li-head">Flask</li>
+    <li> Install Flask
+      <pre class="cde">pip install Flask</pre>
+      You can see <a class="in-link" href="http://flask.pocoo.org/docs/1.0/installation/#install-flask">Installation</a> for more information.
+    </li>
+
+    <li> Create a Flask project (or use yours), see <a class="in-link" href="http://flask.pocoo.org/docs/1.0/installation/#install-flask">Installation</a> for more. In windows you can do that <body>
+      <pre class="cde">py -3 -m venv venv</pre>
+      Then activate it
+      <pre class="cde">venv\Scripts\activate</pre>
+      Now create  <span class="in-link">index.py</span> and copy the codes there.
+    </li>
+    <li> Setup the python file as master
+      <pre class="cde"> set FLASK_APP=index.py</pre>
+    </li>
+    <li class="li-head">D3 and DB</li>
+    <li>Take a look at d3 calendar <a class="in-link" href="https://bl.ocks.org/mbostock/4063318">https://bl.ocks.org/mbostock/4063318</a></li>
+    <li>Take a look at its data <a class="in-link" href="https://bl.ocks.org/mbostock/raw/4063318/dji.csv">https://bl.ocks.org/mbostock/raw/4063318/dji.csv</a>. Import it as a table in a mysql database "test" table "calendar"</li>
+    <li>Create a js file <span class="in-link">d3calendar.js</span> in Folder (create it) <span class="in-link">static/js/</span>. We call it below.
+    </li>
+    Go to a folder and Install <b>flask-mysqldb</b> by
+    <pre class="cde">pip3 install flask-mysqldb</pre>
+  </li>
+  <li class="li-head">Integration</li>
+  <li>Take a look at <span class="in-link">/calander_data.json</span> route in <span class="in-link">index.py</span>. We get data from table "calendar", you can customize that fetch. Check the route <span class="in-link">http://localhost:8000/calander_data.json</span> </li>
+  <li>In <span class="in-link">index.py</span> add the route <span class="in-link">@app.route('/')</span> there. Check the route <span class="in-link">http://localhost:8000/</span> </li>
+  <li>Create this file <span class="in-link">index.html</span> in <span class="in-link">/templates</span> folder.
+    <li>Start project
+      <pre class="cde">flask run --host=0.0.0.0</pre>
+    </li>
+    <li>
+      Go to <span class="in-link">http://127.0.0.1:5000/</span>
+    </ul>
+  </div>
+
+  <h2>Calendar view</h2>
+  <div id="container" style="width:60%;float:right"></div>
+  <script src="static/js/d3calendar.js"></script>
